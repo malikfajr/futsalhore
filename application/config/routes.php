@@ -58,6 +58,28 @@ $route['auth/login']['get'] = 'AuthController/login';
 $route['auth/login']['post'] = 'AuthController/authenticate';
 $route['auth/logout']['get'] = 'AuthController/logout';
 
+// Admin routing
 $route['admin']['get'] = 'Admin/DashboardController/index';
 
+
+// Admin Facility Routing
+$route['admin/facility']['get'] = 'Admin/FacilityController/index';
+$route['admin/facility']['post'] = 'Admin/FacilityController/store';
+$route['admin/facility/(:any)']['post'] = 'Admin/FacilityController/update/$1';
+$route['admin/facility/(:any)']['delete'] = 'Admin/FacilityController/destroy/$1';
+
+// Admin Lapangan Routing
+$route['admin/lapangan']['get'] = 'Admin/LapanganController/index';
+$route['admin/lapangan']['post'] = 'Admin/LapanganController/store';
+$route['admin/lapangan/add']['get'] = 'Admin/LapanganController/add';
+$route['admin/lapangan/edit/(:any)']['get'] = 'Admin/LapanganController/edit/$1';
+$route['admin/lapangan/edit/(:any)']['post'] = 'Admin/LapanganController/update/$1';
+$route['admin/lapangan/delete/(:any)']['delete'] = 'Admin/LapanganController/destroy/$1';
+
+
+
+
+// User routing
 $route['profile']['get'] = 'UserController/profile';
+
+// Guest Routing

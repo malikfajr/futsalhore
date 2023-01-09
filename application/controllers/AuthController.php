@@ -26,6 +26,7 @@ class AuthController extends CI_Controller {
                 'login' => true,
                 'username' => $data->username,
                 'nama'  => $data->nama,
+                'foto' => $data->foto,
                 'admin' => (int)$data->is_admin
             );
 

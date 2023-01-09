@@ -12,7 +12,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item <?= $this->uri->segment(2) == null ? 'active' : ''?>">
                 <a class="nav-link" href="index.html">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
@@ -22,8 +22,15 @@
             <hr class="sidebar-divider">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href="index.html">
+            <li class="nav-item <?= $this->uri->segment(2) == 'facility' ? 'active' : ''?>">
+                <a class="nav-link" href="<?= base_url('admin/facility')?>">
+                    <i class="fas fa-dharmachakra"></i>
+                    <span>Fasilitas</span>
+                </a>
+            </li>
+
+            <li class="nav-item <?= $this->uri->segment(2) == 'lapangan' ? 'active' : ''?>">
+                <a class="nav-link" href="<?= base_url('admin/lapangan')?>">
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>Lapangan</span></a>
             </li>
