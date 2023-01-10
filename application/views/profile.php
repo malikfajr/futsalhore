@@ -35,6 +35,11 @@
                         <?= $this->session->success; ?>
                         </div>
                     <?php endif;?>
+                    <?php if (isset($this->session->failed)):?>
+                        <div class="alert alert-danger" role="alert">
+                        <?= $this->session->failed; ?>
+                        </div>
+                    <?php endif;?>
                     <!-- Content Row -->
                     <div class="row">
                         <!-- Diisi kontent -->
@@ -47,6 +52,25 @@
                             <a href="<?= base_url('admin')?>" class="ms-auto btn btn-success w-full my-2">Dashboard</a>
                         </div>
                         <?php endif; ?>
+                        <div class="col-md-12">
+                            <div class="mb-3 mt-5">
+                                <img src="<?= base_url() . ($user->foto != '' ? $user->foto :'asset/img/undraw_profile.svg') ?>" width="150" alt="foto" loading="lazy" srcset="">
+                            </div>
+                            <div class="mb-3">
+                                <table>
+                                    <tr>
+                                        <td>Nama</td>
+                                        <td>:</td>
+                                        <td><?= $user->nama ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alamat</td>
+                                        <td>:</td>
+                                        <td><?= $user->alamat ?></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
@@ -81,16 +105,31 @@
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editProfileLabel">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title" id="editProfileLabel">Edit Profile</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
             </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
+            <form action="<?= base_url('profile/update') ?>" method="post" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="form-group mb-3">
+                        <label for="nama"class="form-label">Nama</label>
+                        <input type="text" class="form-control" name="nama" value="<?= $user->nama ?>" id="nama" />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="foto"class="form-label">foto</label>
+                        <input type="file" class="form-control" name="foto" id="foto" accept="image/*" />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="alamat"class="form-label">alamat</label>
+                        <textarea name="alamat" class="form-control" rows="10">
+                            <?= $user->alamat ?>
+                        </textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
             </div>
         </div>
     </div>
@@ -101,16 +140,25 @@
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editPassModalLabel">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title" id="editPassModalLabel">Edit Password</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
             </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
+            <form action="<?= base_url('edit/password') ?>" method="post">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="pass1" class="form-label">New Password</label>
+                        <input type="password" class="form-control" name="pass1" id="pass1" require>
+                    </div>
+                    <div class="mb-3">
+                        <label for="pass2" class="form-label">New Password</label>
+                        <input type="password" class="form-control" name="pass2" id="pass2" require>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
             </div>
         </div>
     </div>

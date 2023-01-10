@@ -50,7 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'welcome';
-$route['404_override'] = '';
+$route['404_override'] = 'welcome/not_found';
 $route['translate_uri_dashes'] = FALSE;
 
 // Authentication
@@ -74,12 +74,16 @@ $route['admin/lapangan']['post'] = 'Admin/LapanganController/store';
 $route['admin/lapangan/add']['get'] = 'Admin/LapanganController/add';
 $route['admin/lapangan/edit/(:any)']['get'] = 'Admin/LapanganController/edit/$1';
 $route['admin/lapangan/edit/(:any)']['post'] = 'Admin/LapanganController/update/$1';
-$route['admin/lapangan/delete/(:any)']['delete'] = 'Admin/LapanganController/destroy/$1';
+$route['admin/lapangan/delete/(:any)'] = 'Admin/LapanganController/destroy/$1';
 
 
 
 
 // User routing
 $route['profile']['get'] = 'UserController/profile';
+$route['profile/update']['post'] = 'UserController/update';
+$route['edit/password']['post'] = 'UserController/edit_password';
+$route['booking']['get'] = 'UserController/booking_view';
+$route['booking']['post'] = 'UserController/booking_store';
 
 // Guest Routing

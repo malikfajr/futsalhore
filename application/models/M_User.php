@@ -13,4 +13,15 @@ class M_User extends CI_Model {
 
         return $this->db->get_where($this->table, $credential);
     }
+
+    public function first(string $username)
+    {
+        return $this->db->get_where($this->table, ['username' => $username])->row();
+    }
+
+    public function update(string $username, array $data)
+    {
+        $this->db->where('username', $username);
+        $this->db->update($this->table, $data);
+    }
 }

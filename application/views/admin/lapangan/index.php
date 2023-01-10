@@ -51,6 +51,33 @@
                     <!-- Content Row -->
                     <div class="row">
                         <!-- Diisi kontent -->
+                        <div class="col-lg-12">
+                            <table class="table table-bordered" id="tblFacility">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama Lapangan</th>
+                                        <th>Fasilitas</th>
+                                        <th>Harga Perjam</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach($lapangan as $i => $item): ?>
+                                    <tr key="<?= $item->kode_lapangan ?>">
+                                        <td class="align-baseline"><?= $i+1 ?></td>
+                                        <td class="align-baseline"><?= $item->nama_lapangan ?></td>
+                                        <td class="align-baseline"><?= $item->fasilitas ?></td>
+                                        <td class="align-baseline"><?= number_format($item->harga_perjam, 2) ?></td>
+                                        <td class="align-baseline">
+                                            <a href="<?= base_url('admin/lapangan/edit/' . $item->kode_lapangan)?>" class="btn btn-warning">Edit</a>
+                                            <a href="#" onclick="hapus('<?= $item->kode_lapangan ?>')" class="btn btn-danger">Hapus</a>
+                                        </td>
+                                    </tr>
+                                    <?php endforeach;?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
 
                 </div>
@@ -113,13 +140,54 @@
     <!-- Page level plugins -->
     <script src="<?= base_url('asset/') ?>vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="<?= base_url('asset/') ?>vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
     <script>
         // Call the dataTables jQuery plugin
         $(document).ready(function() {
             $('#tblLapangan').DataTable();
         });
 
+        function hapus(id) {
+            Swal.fire({
+                    title: 'Konfirmasi',
+                    text: "Apakah anda yakin menghapus data?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // console.log(id);
+                        // location.href = '<?= base_url('admin/lapangan/delete/') ?>' + id
+                        $.ajax({
+                            url: '<?= base_url('admin/lapangan/delete/') ?>' + id,
+                            method: 'delete',
+                            dataType: 'json',
+                            data: {},
+                            success: function (res) {
+                                if (res.success) {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Berhasil',
+                                        text: 'Berhasil menghapus data'
+                                    }).then( _ => {
+                                        location.reload()
+                                    })
+                                }
+                            },
+                            error: function (res) {
+                                Swal.fire({
+                                    icon: 'warning',
+                                    title: 'Gagal',
+                                    text: 'Gagal menghapus data'
+                                })
+                            }
+                        })
+                    }
+                })
+        }
  </script>
 </body>
 

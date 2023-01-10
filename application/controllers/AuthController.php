@@ -10,6 +10,9 @@ class AuthController extends CI_Controller {
 
     public function login()
     {
+        if ($this->session->login) {
+            return redirect(base_url('profile'));
+        }
         $this->load->view('auth/login');
     }
 

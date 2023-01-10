@@ -51,10 +51,10 @@
                     <div class="row">
                         <!-- Diisi kontent -->
                         <div class="col-md-10 mx-auto">
-                            <form action="<?= base_url() ?>admin/lapangan<?= !empty($id) ? '/' . $id : ''?>" method="post">
+                            <form action="<?= base_url() ?>admin/lapangan<?= !empty($lapangan) ? '/edit/' . $lapangan->kode_lapangan : ''?>" method="post">
                                 <?php 
-                                    if (!empty($id)) {
-                                        echo "<input type='hidden' name='id' value='$id'>";
+                                    if (!empty($lapangan)) {
+                                        echo "<input type='hidden' name='id' value='$lapangan->kode_lapangan'>";
                                     }
                                 ?>
                                 
@@ -68,12 +68,12 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="harga" class="form-label">Harga Lapangan</label>
+                                    <label for="harga" class="form-label">Harga Lapangan Perjam</label>
                                     <input type="number" 
                                         class="form-control" 
                                         name="harga" id="harga" 
                                         placeholder="Harga"
-                                        value="<?= $lapangan->harga_lapangan ?? ''?>"/>
+                                        value="<?= $lapangan->harga_perjam ?? ''?>"/>
                                 </div>
 
                                 <div class="mb-3">
@@ -85,7 +85,9 @@
                                         multiple>
                                         <?php foreach ($fasilitas as $index => $item) : ?>
                                             <option 
-                                                value="<?= $item->id ?>">
+                                                value="<?= $item->id ?>"
+                                                <?=  !empty($lapangan) && in_array($item->id, $lapangan->fasilitas) ? 'selected' : ''?>
+                                                >
                                                     <?= $item->nama_fasilitas ?>
                                             </option>
                                         <?php endforeach; ?>

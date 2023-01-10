@@ -25,4 +25,15 @@ class M_Facility extends CI_Model {
     {
         return $this->db->delete($this->table, ['id' => $id]);
     }
+
+    public function lapangan($kodeLapangan, $data)
+    {
+        $this->db->delete('fasilitas_lapangan', ['kode_lapangan' => $kodeLapangan]);
+        foreach ($data as $item) {
+            $this->db->insert('fasilitas_lapangan', [
+                'fasilitas_id' => $item,
+                'kode_lapangan' => $kodeLapangan
+            ]);
+        }
+    }
 }

@@ -296,7 +296,7 @@
                             },
                             error: function(res) {
                                 Swal.fire({
-                                    icon: 'danger',
+                                    icon: 'warning',
                                     title: 'Gagal',
                                     text: 'Gagal menambahkakn data',
                                 })

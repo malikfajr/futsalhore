@@ -13,7 +13,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item <?= $this->uri->segment(2) == null ? 'active' : ''?>">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="<?= base_url('admin/') ?>">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
