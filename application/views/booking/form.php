@@ -65,7 +65,7 @@
                                     <td><input type="time" name="waktu_mulai" id="waktu_mulai" class="form-control ml-3" /></td>
                                 </tr>
                                 <tr>
-                                    <td><label for="waktu_selesai" class="form-label">Pilih Waktu Mulai</label></td>
+                                    <td><label for="waktu_selesai" class="form-label">Pilih Waktu Sekesai</label></td>
                                     <td><input type="time" name="waktu_selesai" id="waktu_selesai" class="form-control ml-3" /></td>
                                 </tr>
                             </table>

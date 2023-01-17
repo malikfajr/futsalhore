@@ -5,7 +5,7 @@
         <i class="fa fa-bars"></i>
     </button>
 
-    <?php if (! $this->session->login):?>
+    <?php if (!$this->session->login || !$this->session->admin):?>
         <a class="navbar-brand" href="<?= base_url() ?>">FUTSAL HORE</a>
     <?php endif;?>
 
@@ -49,7 +49,7 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
                 <a class="nav-link dropdown-toggle btn" href="<?= base_url('auth/login') ?>" role="button" aria-haspopup="true" aria-expanded="false">
-                    <span class="mr-2 d-none d-sm-inline text-gray-600">lOGIN</span>
+                    <span class="mr-2 d-none d-sm-inline text-gray-600">LOGIN</span>
                 </a>
             </li>
         <?php endif; ?>
